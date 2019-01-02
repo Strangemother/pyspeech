@@ -56,7 +56,11 @@ from win32com.client import constants as _constants
 import win32com.client
 import pythoncom
 import time
-import thread
+
+try:
+    import thread
+except ImportError:
+    import _thread as thread
 
 # Make sure that we've got our COM wrappers generated.
 from win32com.client import gencache
@@ -154,7 +158,7 @@ def input(prompt=None, phraselist=None):
         listener.stoplistening()
 
     if prompt:
-        print prompt
+        print(prompt)
 
     if phraselist:
         listener = listenfor(phraselist, response)
